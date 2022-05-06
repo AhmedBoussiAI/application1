@@ -12,7 +12,7 @@
             }
             steps {
                 sh 'pip -r requirements.txt
-                sh 'python -m py_compile sources/add2vals.py sources/calc.py'
+                sh 'python -m py_compile sources/add2vals.py sources/*.py'
                 stash(name: 'compiled-results', includes: 'sources/*.py*')
             }
         }
@@ -23,7 +23,7 @@
                 }
             }
             steps {
-                sh 'py.test --junit-xml test-reports/results.xml sources/test*.py'
+                sh 'py.test --junit-xml test-reports/results.xml tests/*.py'
             }
             post {
                 always {
