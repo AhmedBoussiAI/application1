@@ -31,7 +31,11 @@
             }
         }
      stage('Packaging') {
-           agent any
+            agent {
+                docker {
+                    image 'python:2-alpine'
+                }
+            }
                environment {
                    VOLUME = '$PWD/sources:/src'
                    IMAGE = 'cdrx/pyinstaller-linux:python3'
