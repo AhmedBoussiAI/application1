@@ -48,8 +48,8 @@
                       
                        sh 'cd sources'
                         sh 'ls -l'
-                        sh 'python /*.py bdist_dumb --format=zip'
-                        sh 'python /*.py sdist bdist_wheel'
+                        sh 'python *.py bdist_dumb --format=zip'
+                        sh 'python *.py sdist bdist_wheel'
                         sh 'python -m twine upload -r nexus-pypi dist/* --config-file .pypirc --verbose'
                     }
                }
