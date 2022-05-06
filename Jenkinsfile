@@ -30,24 +30,30 @@
                 }
             }
         }
-        stage('Deliver') { 
-            agent any
-            environment { 
-                VOLUME = '$(pwd)/sources:/src'
-                IMAGE = 'cdrx/pyinstaller-linux:python2'
-            }
-            steps {
-                dir(path: env.BUILD_ID) { 
-                    unstash(name: 'compiled-results') 
-                    sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F add2vals.py'" 
-                }
-            }
-            post {
-                success {
-                    archiveArtifacts "${env.BUILD_ID}/sources/dist/add2vals" 
-                    sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
-                }
-            }
+     stage('Packaging') {
+           agent any
+               environment {
+                   VOLUME = '$PWD/sources:/src'
+                   IMAGE = 'cdrx/pyinstaller-linux:python3'
+               }
+               steps {
+                   dir(path: env.BUILD_ID) {
+                       unstash(name: 'compiled-results')
+                       unstash(name: 'setUpPy')
+                       unstash(name: 'pypirc')
+                       //https://docs.python.org/3/distutils/builtdist.html
+                       sh 'cd sources'
+                        sh 'ls -l'
+                        sh 'python3 setup.py bdist_dumb --format=zip'
+                       sh 'python3 setup.py sdist bdist_wheel'
+                       sh 'python3 -m twine upload -r nexus-pypi dist/* --config-file .pypirc --verbose'
+                    }
+               }
+               post {
+                   success {
+                        archiveArtifacts "${env.BUILD_ID}/dist/*"
+                   }
+               }
         }
     }
 }
