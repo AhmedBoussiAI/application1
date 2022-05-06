@@ -40,6 +40,7 @@
                    VOLUME = '$PWD/sources:/src'
                    IMAGE = 'cdrx/pyinstaller-linux:python3'
                }
+           
             steps {
                 dir(path: env.BUILD_ID) { 
                     unstash(name: 'compiled-results') 
