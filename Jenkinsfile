@@ -49,7 +49,7 @@
             }
             post {
                 success {
-                    sh "cd env"
+                    
                     sh "ls" 
                     
                     archiveArtifacts "${env.BUILD_ID}/"//sources/dist/add2vals" 
