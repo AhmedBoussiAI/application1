@@ -40,24 +40,18 @@
                    VOLUME = '$PWD/sources:/src'
                    IMAGE = 'cdrx/pyinstaller-linux:python3'
                }
-               steps {
-                   dir(path: env.BUILD_ID) {
-                       unstash(name: 'compiled-results')
-                       //unstash(name: 'setUpPy')
-                      // unstash(name: 'pypirc')
-                      
-                       sh 'cd sources'
-                        sh 'ls -l'
-                        sh 'python *.py bdist_dumb --format=zip'
-                        sh 'python *.py sdist bdist_wheel'
-                        sh 'python -m twine upload -r nexus-pypi dist/* --config-file .pypirc --verbose'
-                    }
-               }
-               post {
-                   success {
-                        archiveArtifacts "${env.BUILD_ID}/dist/*"
-                   }
-               }
+            steps {
+                dir(path: env.BUILD_ID) { 
+                    unstash(name: 'compiled-results') 
+                    sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F add2vals.py'" 
+                }
+            }
+            post {
+                success {
+                    archiveArtifacts "${env.BUILD_ID}/sources/dist/add2vals" 
+                    sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
+                }
+            }
         }
     }
 }
