@@ -11,7 +11,7 @@
                 }
             }
             steps {
-                sh 'pip -r requirements.txt
+                sh 'pip -r requirements.txt'
                 sh 'python -m py_compile sources/add2vals.py sources/*.py'
                 stash(name: 'compiled-results', includes: 'sources/*.py*')
             }
