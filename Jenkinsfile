@@ -53,7 +53,7 @@
                     
                     sh "ls" 
                     
-                    archiveArtifacts "${env.BUILD_ID}/"//sources/dist/add2vals" 
+                    archiveArtifacts '${env.BUILD_ID}' 
 
                 }
             }
