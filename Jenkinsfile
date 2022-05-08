@@ -51,7 +51,7 @@
             post {
                 success {
                     
-                    sh "ls" 
+                
                     
                     archiveArtifacts '${env.BUILD_ID}/' 
 
