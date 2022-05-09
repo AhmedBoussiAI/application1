@@ -54,7 +54,7 @@
                     
                     echo '$BUILD_ID'
                      
-                    //archiveArtifacts  $BUILD_ID/ 
+
 
                 }
             }
