@@ -53,7 +53,7 @@
                     
                 
                      
-                    archiveArtifacts ' ${env.BUILD_ID}/ ' 
+                    archiveArtifacts ' $BUILD_ID/ ' 
 
                 }
             }
