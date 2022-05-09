@@ -1,5 +1,8 @@
     pipeline {
-    agent none
+    agent      
+        docker {
+                    image 'python:2-alpine'
+                }
     options {
         skipStagesAfterUnstable()
     }
