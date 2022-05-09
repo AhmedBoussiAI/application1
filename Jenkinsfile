@@ -1,8 +1,6 @@
     pipeline {
-    agent      
-        docker {
-                    image 'python:2-alpine'
-                }
+    agent  none    
+
     options {
         skipStagesAfterUnstable()
     }
@@ -62,6 +60,11 @@
             }
         }
       stage('Archive') {
+                      agent {
+                docker {
+                    image 'python:2-alpine'
+                }
+            }
                       steps {
                              sh 'tar -cvzf sources.tar.gz --strip-components=1 sources'
                              archive 'sources.tar.gz'
