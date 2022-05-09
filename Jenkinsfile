@@ -59,9 +59,11 @@
             }
         }
       stage('Archive') {
-        // archive the build artifact
-       // sh 'tar -cvzf sources.tar.gz --strip-components=1 sources'
-        //archive 'sources.tar.gz'
+                      steps {
+                             sh 'tar -cvzf sources.tar.gz --strip-components=1 sources'
+                             archive 'sources.tar.gz'
+                             }
+        
     }        
     }
 }
