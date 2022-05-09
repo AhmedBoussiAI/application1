@@ -70,6 +70,13 @@
                              archive 'sources.tar.gz'
                              }
         
-    }        
+    } 
+            stage('Deploy') {
+                steps {
+                        milestone()
+                        echo 'Deploying...'
+    }
+                
     }
 }
+    }
