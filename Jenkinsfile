@@ -73,7 +73,7 @@
     } 
             stage('Deploy') {
                 steps {
-                        milestone()
+                     
                         echo 'Deploying...'
     }
                 
