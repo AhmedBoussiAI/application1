@@ -48,15 +48,11 @@
 
                 }
             }
-            post {
-                success {
-                    
-                    echo '$BUILD_ID'
-                     
-                    //archiveArtifacts  $BUILD_ID/ 
-
-                }
-            }
+    stage('Archive') {
+        // archive the build artifact
+        sh 'tar -cvzf sources.tar.gz --strip-components=1 sources'
+        archive 'sources.tar.gz'
+    }
         }
     }
 }
