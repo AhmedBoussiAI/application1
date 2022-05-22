@@ -20,12 +20,7 @@
             }
         }
         stage('Test') {
-           // agent {
-             //   docker {
-               //     image 'grihabor/pytest'
 
-                //}
-            //}
             steps {
                 sh 'py.test --junit-xml test-reports/results.xml Tests/*.py'
             }
@@ -36,11 +31,7 @@
             }
         }
      stage('Packaging') {
-           // agent {
-             //   docker {
-               //     image 'python:3-alpine'
-                //}
-            //}
+
                environment {
                    VOLUME = '$PWD/sources:/src'
                    IMAGE = 'cdrx/pyinstaller-linux:python3'
@@ -63,11 +54,7 @@
             }
         }
       stage('Archive') {
-                      //agent {
-                //docker {
-                  //  image 'python:3-alpine'
-                //}
-            //}
+
                       steps {
                              sh 'tar -cvzf sources.tar.gz --strip-components=1 sources'
                              archive 'sources.tar.gz'
