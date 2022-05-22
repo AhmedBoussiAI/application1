@@ -12,6 +12,7 @@
         stage('Build') {
 
             steps {
+                sh 'pip install pytest'
                 sh 'pip install -r requirements.txt'
                 sh '2to3 -w sources/*.py'
                 sh 'python -m py_compile  sources/*.py'
@@ -19,12 +20,12 @@
             }
         }
         stage('Test') {
-            agent {
-                docker {
-                    image 'grihabor/pytest'
+           // agent {
+             //   docker {
+               //     image 'grihabor/pytest'
 
-                }
-            }
+                //}
+            //}
             steps {
                 sh 'py.test --junit-xml test-reports/results.xml Tests/*.py'
             }
