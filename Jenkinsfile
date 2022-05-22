@@ -21,7 +21,7 @@
         stage('Test') {
             agent {
                 docker {
-                    image 'grihabor/pytest
+                    image 'grihabor/pytest'
 '
                 }
             }
