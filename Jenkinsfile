@@ -22,7 +22,7 @@
             agent {
                 docker {
                     image 'grihabor/pytest'
-'
+
                 }
             }
             steps {
