@@ -8,7 +8,7 @@
         stage('Build') {
             agent {
                 docker {
-                    image 'python:2-alpine'
+                    image 'python:3-alpine'
                 }
             }
             steps {
@@ -35,7 +35,7 @@
      stage('Packaging') {
             agent {
                 docker {
-                    image 'python:2-alpine'
+                    image 'python:3-alpine'
                 }
             }
                environment {
@@ -62,7 +62,7 @@
       stage('Archive') {
                       agent {
                 docker {
-                    image 'python:2-alpine'
+                    image 'python:3-alpine'
                 }
             }
                       steps {
