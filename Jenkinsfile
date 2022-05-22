@@ -1,16 +1,16 @@
    pipeline {
-    agent  none    
-
-    options {
-        skipStagesAfterUnstable()
-    }
-    stages {
-        stage('Build') {
+      
             agent {
                 docker {
                     image 'python:3-alpine'
                 }
-            }
+            }   
+
+ 
+    }
+    stages {
+        stage('Build') {
+
             steps {
                 sh 'pip install -r requirements.txt'
                 sh '2to3 -w sources/*.py'
