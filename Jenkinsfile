@@ -63,11 +63,11 @@
             }
         }
       stage('Archive') {
-                      agent {
-                docker {
-                    image 'python:3-alpine'
-                }
-            }
+                      //agent {
+                //docker {
+                  //  image 'python:3-alpine'
+                //}
+            //}
                       steps {
                              sh 'tar -cvzf sources.tar.gz --strip-components=1 sources'
                              archive 'sources.tar.gz'
