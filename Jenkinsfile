@@ -18,7 +18,7 @@
         stage('Test') {
 
             steps {
-                sh 'py.test --junit-xml test-reports/results.xml Tests/*.py'
+                sh 'python 3pytest --junit-xml test-reports/results.xml Tests/*.py'
             }
             post {
                 always {
