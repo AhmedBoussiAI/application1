@@ -2,7 +2,9 @@
       
             agent any
 
- 
+   environment {
+         def BUILDVERSION = sh(script: "echo `date +%F-%T`", returnStdout: true).trim()
+     } 
     
     stages {
         stage('Build') {
