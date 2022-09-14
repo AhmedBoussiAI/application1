@@ -11,7 +11,7 @@
                 sh ' pip3 install pytest'
                 sh ' pip3 install -r requirements.txt '
 
-                sh 'python -m py_compile  sources/*.py'
+                sh 'python3 -m py_compile  sources/*.py'
                 stash(name: 'compiled-results', includes: 'sources/*.py*')
             }
         }
