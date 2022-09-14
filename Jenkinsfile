@@ -12,9 +12,9 @@
         stage('Build') {
 
             steps {
-                sh 'pip install pytest'
-                sh 'pip install -r requirements.txt '
-                sh '2to3 -w sources/*.py'
+                sh 'sudo pip install pytest'
+                sh 'sudo pip install -r requirements.txt '
+                sh 'sudo 2to3 -w sources/*.py'
                 sh 'python -m py_compile  sources/*.py'
                 stash(name: 'compiled-results', includes: 'sources/*.py*')
             }
